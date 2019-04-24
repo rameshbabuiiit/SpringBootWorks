@@ -1,0 +1,49 @@
+package com.lmo.springboot.controller;
+
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lmo.springboot.dao.DaoService;
+import com.lmo.springboot.dao.RepoService;
+import com.lmo.springboot.model.User;
+
+@RestController
+@RequestMapping(value = "/users")
+public class UserController {
+	@Autowired
+	DaoService daoServ;
+
+	@Autowired
+	RepoService repServ;
+
+	@GetMapping("/{userid}")
+	public ResponseEntity<Object> getUsers(@PathVariable long userid) {
+		Optional<User> user = repServ.getUser(userid);
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
+
+	@GetMapping
+	public ResponseEntity<User> getUsers() {
+		return new ResponseEntity<User>(HttpStatus.OK);
+	}
+
+	@PostMapping
+	public ResponseEntity<User> postUser(@Valid @RequestBody User user) {
+		// long id = daoServ.insert(user);
+		repServ.insert(user);
+		return new ResponseEntity<User>(HttpStatus.CREATED);
+
+	}
+
+}

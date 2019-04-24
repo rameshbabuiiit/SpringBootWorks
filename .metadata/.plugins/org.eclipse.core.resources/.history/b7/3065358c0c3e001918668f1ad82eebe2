@@ -1,0 +1,37 @@
+package com.lmo.springboot.exception;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class NoData {
+	private final String code = "20001";
+	private final String message = "No Data Found";
+
+	public NoData() {
+
+	}
+	/**
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "NoData [code=" + code + ", message=" + message + "]";
+	}
+
+}

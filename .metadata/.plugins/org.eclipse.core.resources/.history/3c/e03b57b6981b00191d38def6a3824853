@@ -1,0 +1,75 @@
+package com.learnmodeon.users.ui.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.learnmodeon.users.ui.model.requests.UserDetailsRequestModel;
+import com.learnmodeon.users.ui.model.responses.RestUser;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+	
+	@GetMapping
+	public String getUsers(
+			//cannot make int (primitive type optional as it cannot be made null
+			@RequestParam(value="page",required=false,defaultValue="20") String page,
+			@RequestParam(value="limit",required=false) String limit) 
+			//to avoid nullpointer exception use defaultvalue or handle if null condition
+	{
+		return "Get Users Called with page="+page + " and limit = " + limit;
+	}
+	
+	@GetMapping(path="/{userId}",
+			produces = {
+					//add jackson xml to pom
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_VALUE}
+					)
+	//public RestUser getUser(@PathVariable String userId) {
+	public ResponseEntity<RestUser> getUser(@PathVariable String userId) {
+		RestUser ruser = new RestUser();
+		ruser.setId(123);
+		ruser.setName("Ramesh");
+		ruser.setDept("Computers");
+		ruser.setSalary(100000);
+		return new ResponseEntity<RestUser>(ruser,HttpStatus.OK);
+	}
+	
+	@PostMapping(consumes = {
+			//add jackson xml to pom
+			MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE},
+			produces = {
+					//add jackson xml to pom
+					MediaType.APPLICATION_XML_VALUE,
+					MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<RestUser> createUser(@RequestBody UserDetailsRequestModel userDetails) {
+		RestUser ruser = new RestUser();
+		ruser.setId(ruser.getId());
+		ruser.setName(ruser.getName());
+		ruser.setDept(ruser.getDept());
+		ruser.setSalary(ruser.getSalary());
+		return new ResponseEntity<RestUser>(ruser,HttpStatus.OK);
+	}
+	
+	@PutMapping
+	public String updateUser() {
+		return "Update User Called";
+	}
+	
+	@DeleteMapping
+	public String deleteUser() {
+		return "Delete User Called";
+	}
+}

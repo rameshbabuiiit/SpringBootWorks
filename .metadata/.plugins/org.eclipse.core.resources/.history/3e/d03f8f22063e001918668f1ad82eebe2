@@ -1,0 +1,15 @@
+spring.jpa.show-sql =true
+spring.jpa.hibernate.ddl-auto = create-drop
+spring.jpa.database-platform=org.hibernate.dialect.OracleDialect
+#spring.h2.console.enabled=true
+
+#oracle Settings
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl
+spring.datasource.username=rams
+spring.datasource.password=rams
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+
+
+#logging
+logging.level.org.springframework.web= DEBUG
+

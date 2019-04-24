@@ -1,0 +1,17 @@
+package com.lmo.springboot.exception;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class ExceptionHandlerCentral {
+	@ExceptionHandler(NoDataFoundException.class)
+	public ResponseEntity<Object> NoDataFoundHandler(RuntimeException ex) {
+		ExceptionTemplate exp = new ExceptionTemplate("20001", ex.getLocalizedMessage());
+		return new ResponseEntity<Object>(exp,new HttpHeaders(), HttpStatus.NO_CONTENT);
+	}
+
+}

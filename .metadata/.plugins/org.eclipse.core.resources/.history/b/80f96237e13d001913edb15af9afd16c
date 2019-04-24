@@ -1,0 +1,57 @@
+package com.lmo.springboot.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="user_info")
+public class User {
+	@Column(name="user_id")
+	@Id
+	@GeneratedValue
+	private int id;
+	@NotNull
+	private String name;
+	private String desc;
+	@Email
+	@NotNull
+	private String email;
+	
+	protected User() {};
+	
+	public User(int id, String name, String desc) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", desc=" + desc + "]";
+	}
+	
+
+}

@@ -1,0 +1,5 @@
+package com.lmo.springboot.exception;
+
+public class ExceptionHandler {
+
+}

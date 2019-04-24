@@ -1,0 +1,5 @@
+package com.lmo.springboot.repos;
+
+public interface UserRepository extends JPARepository<User, Long> {
+
+}

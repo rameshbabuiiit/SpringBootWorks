@@ -1,0 +1,19 @@
+package com.lmo.springboot.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.lmo.springboot.model.User;
+import com.lmo.springboot.repos.UserRepository;
+
+public class RepoService {
+	@Autowired
+	UserRepository userRepo;
+
+	public void insert(User user) {
+		userRepo.save(user);
+	}
+	
+	public User getUser(long id) {
+		return userRepo.getOne(id);
+	}
+}

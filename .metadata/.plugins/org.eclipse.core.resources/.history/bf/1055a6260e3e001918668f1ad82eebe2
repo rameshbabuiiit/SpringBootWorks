@@ -1,0 +1,7 @@
+package com.lmo.springboot.exception;
+
+public class NoDataFoundException extends RuntimeException {
+	public NoDataFound() {
+			return super("No Data Found");
+	}
+}

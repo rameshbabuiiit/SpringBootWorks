@@ -1,0 +1,9 @@
+package com.lmo.springboot.repos;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.lmo.springboot.model.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+}

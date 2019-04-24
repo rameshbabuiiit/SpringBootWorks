@@ -1,0 +1,7 @@
+package com.lmo.springboot.dao;
+
+@Repository
+@Transactional
+public class DaoService {
+
+}
